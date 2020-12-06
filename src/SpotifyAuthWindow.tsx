@@ -16,7 +16,7 @@ export default class SpotifyAuthWindow extends Component {
     public componentDidMount(): void {
 
         this.externalWindow = window.open("https://accounts.spotify.com/authorize?" +
-            "client_id=" +
+            "client_id=" + "6bce9a60f8534b4e94e1268d1cf0d49e" +
             "&response_type=token" +
             "&redirect_uri=" + window.location.origin +
             "&show_dialog=true" +

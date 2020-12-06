@@ -8,6 +8,7 @@ import styles from "./App.module.css";
 
 interface ISpotifyPlayerProps {
     playingRecordingId: string;
+    token:string;
 }
 
 interface ISpotifyPlayerState {
@@ -40,7 +41,7 @@ class SpotifyPlayerContainer extends Component <ISpotifyPlayerProps, ISpotifyPla
 
         this.state = {
             loadingState: "loading scripts",
-            spotifyAccessToken: "",
+            spotifyAccessToken: props.token,
             spotifyDeviceId: "",
             spotifyAuthorizationGranted: false,
             spotifyPlayerConnected: false,
@@ -54,11 +55,12 @@ class SpotifyPlayerContainer extends Component <ISpotifyPlayerProps, ISpotifyPla
 
 
     }
-
+  
     private spotifySDKCallback = () => {
         window.onSpotifyWebPlaybackSDKReady = () => {
 
             if (this.state.spotifyAccess !== SpotifyAccess.DENIED) {
+                console.log('in Access Token', this.state.spotifyAccessToken)
                 const spotifyPlayer = new Spotify.Player({
                     name: 'React Spotify Player',
                     getOAuthToken: cb => {
@@ -68,7 +70,7 @@ class SpotifyPlayerContainer extends Component <ISpotifyPlayerProps, ISpotifyPla
 
                 // Playback status updates
                 spotifyPlayer.addListener('player_state_changed', state => {
-                    console.log(state);
+                    console.log('state in spotifyPlayer',state);
                 });
 
 
@@ -85,12 +87,12 @@ class SpotifyPlayerContainer extends Component <ISpotifyPlayerProps, ISpotifyPla
     }
 
     private authorizeSpotifyFromStorage = (e: StorageEvent) => {
-
+        console.log('in auth line 90')
         if (e.key === "spotifyAuthToken") {
             const spotifyAccessToken = e.newValue;
 
             const spotifyAccess = getSpotifyAccess();
-
+            console.log('spotifyAccess', spotifyAccess)
             if (spotifyAccess === SpotifyAccess.DENIED) {
                 this.setState({
                     spotifyAccess: SpotifyAccess.DENIED,
@@ -191,6 +193,10 @@ class SpotifyPlayerContainer extends Component <ISpotifyPlayerProps, ISpotifyPla
     }
 
     render() {
+        console.log('state spotifyPlayerReady',this.state.spotifyPlayerReady)
+        console.log('state playbackOn',this.state.playbackOn)
+        console.log('state playingRecordingId',this.props.playingRecordingId)
+        console.log('state playbackPaused',this.state.playbackPaused)
         return (
             <div className={styles.app}>
                 <h3>Spotify</h3>
