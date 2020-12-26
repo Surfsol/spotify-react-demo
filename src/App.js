@@ -14,11 +14,11 @@ const App = () => {
   console.log('token', token)
     if (!token) {
       return(
-      <Login setToken={setToken}/>
+      <Login />
       )
     } else {
       return (
-        <SpotifyPlayerContainer playingRecordingId="spotify:track:4iV5W9uYEdYUVa79Axb7Rh" token={token}/>
+        <SpotifyPlayerContainer playingRecordingId="spotify:track:5ya2gsaIhTkAuWYEMB0nw5" token={token}/>
       );
     }
 }

@@ -35,3 +35,10 @@ export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${r
 
 
 need to make authorizeSpotifyFromStorage  work in SpotifyPlayerContainer
+
+need to understand:
+Scriptcache - seems to just be when player gets loaded
+
+
+new Spotify??? where did come from?
+why is player stopping after 2 seconds

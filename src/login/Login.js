@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Login.css";
 import { accessUrl } from "./spotify";
-import {getTokenFromResponse} from './spotify'
 
-function Login({setToken}) {
-  // useEffect(()=>{
-  //   console.log('useEffect')
-  //   const hash = getTokenFromResponse();
-  //   //after get access token, clear from url
-  //   window.location.hash = "";
-  //   setToken(hash.access_token)
 
-  // },[])
+const Login = () => {
+
   return (
     <div className="login">
       <img
